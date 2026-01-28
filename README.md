@@ -1,16 +1,167 @@
-# Formula 1 Prediction Model (R)
+🏎️ Formula 1 Race Performance Prediction Model (R)
+📌 Overview
 
-An R-based project that explores historical Formula 1 data (lap times, pit stops, qualifying, race results, standings) to analyze trends and generate predictive comparisons.
+This project is an end-to-end Formula 1 race data analysis and prediction pipeline built in R, leveraging historical race, driver, constructor, lap time, pit stop, and circuit data to model and predict race performance (points scored).
 
-## Project Structure
-- `Data/` – F1 datasets (circuits, drivers, races, lapTimes, pitStops, results, etc.)
-- `src/` – R source code for data prep, analysis, and prediction logic
-- `Output/` – generated outputs (plots/results)
+The project combines data cleaning, feature engineering, exploratory data analysis, and machine learning to compare traditional statistical models with ensemble methods, emphasizing reproducibility and real-world sports analytics.
 
-## How to Run
-1. Open `f1data.Rproj` in RStudio
-2. Install required packages (tidyverse, etc.)
-3. Run: `src/f1_prediction_model.R`
+🧠 Key Objectives
 
-## Outputs
-Example results and comparisons are saved in the `Output/` folder.
+Clean and integrate large, multi-table Formula 1 datasets
+
+Analyze trends in driver age, lap times, pit stops, and constructor performance
+
+Engineer features relevant to race outcomes
+
+Build and compare Linear Regression and Random Forest models
+
+Evaluate model performance using RMSE and R²
+
+
+📊 Datasets Used
+
+The project uses historical Formula 1 datasets including:
+
+Drivers & Constructors (biographical and team data)
+
+Races & Circuits (locations, years, track characteristics)
+
+Lap Times & Pit Stops (race-level performance data)
+
+Results & Standings (finishing positions, points, wins)
+
+All datasets are joined using consistent relational keys (driverId, constructorId, raceId, circuitId).
+
+🧹 Data Cleaning & Feature Engineering
+
+Key preprocessing steps include:
+
+Parsing driver birthdates and computing age at race
+
+Removing incomplete or invalid lap times, pit stops, and race results
+
+Handling missing values using:
+
+Mean imputation (numerical features)
+
+Mode/placeholder imputation (categorical features)
+
+Converting categorical identifiers into numeric representations for modeling
+
+Engineering race-level features such as:
+
+Grid position
+
+Laps completed
+
+Constructor and circuit identifiers
+
+Geographic circuit attributes (latitude & longitude)
+
+📈 Exploratory Data Analysis (EDA)
+
+The project includes extensive visualization and analysis, such as:
+
+Distribution of driver ages
+
+Average lap time trends across seasons
+
+Pit stop duration distributions
+
+Driver wins and podium frequency
+
+Constructor evolution over time
+
+Correlation heatmaps for numerical features
+
+Boxplots and pairwise feature relationships
+
+Visualization tools used:
+
+ggplot2
+
+corrplot
+
+🤖 Modeling Approach
+1️⃣ Linear Regression
+
+A baseline regression model predicts race points using:
+
+Driver age at race
+
+Grid position
+
+Circuit ID
+
+Laps completed
+
+Evaluation metrics:
+
+RMSE
+
+R²
+
+2️⃣ Random Forest (Ensemble Model)
+
+A more advanced Random Forest model is trained using all engineered features to capture non-linear relationships and interactions.
+
+Key features:
+
+Hyperparameter tuning (ntree, mtry)
+
+Feature importance analysis
+
+Out-of-bag (OOB) error comparison
+
+Overfitting detection via Test vs OOB RMSE
+
+📊 Model Performance Summary
+Model	RMSE	R²
+Linear Regression	3.20	0.57
+Random Forest	1.35	0.97
+
+✅ Random Forest significantly outperformed Linear Regression, capturing complex performance dynamics in Formula 1 races.
+
+🛠️ Technologies & Tools
+
+Language: R
+
+Data Manipulation: dplyr, tidyr, lubridate, readr
+
+Visualization: ggplot2, corrplot
+
+Modeling: lm, randomForest, MASS (stepAIC)
+
+Environment: RStudio, GitHub
+
+🚀 Future Improvements
+
+Add time-aware modeling (season-based splits)
+
+Introduce weather and track condition features
+
+Replace numeric IDs with learned embeddings
+
+Build a Shiny dashboard for interactive predictions
+
+Port the pipeline to Python (scikit-learn / XGBoost)
+
+👤 Author
+
+Anas Alkhawar
+Computer Science & Data Science Graduate
+Focused on data engineering, machine learning, and real-world analytics systems.
+
+📎 Why This Project Matters
+
+This repository demonstrates:
+
+End-to-end data science workflow
+
+Strong data engineering fundamentals
+
+Practical machine learning model evaluation
+
+Ability to work with large, relational datasets
+
+Clear documentation and reproducibility
